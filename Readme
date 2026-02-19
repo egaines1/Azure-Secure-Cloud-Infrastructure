@@ -1,0 +1,27 @@
+Azure Secure Infrastructure Lab: Linux Hardening & NSG Configuration
+📌 Project Overview
+This lab demonstrates the deployment and securing of a cloud-based Linux environment within Microsoft Azure. The primary objective was to move beyond default configurations to implement a Zero Trust inspired approach to administrative access. By leveraging Network Security Groups (NSGs) and SSH key-pair authentication, I successfully mitigated common attack vectors such as credential brute-forcing and unauthorized port scanning.
+- Technologies Used
+Cloud Platform: Microsoft Azure
+Operating System: Ubuntu 24.04 LTS
+Networking: Virtual Networks (VNet), Subnets, and Public IP Addresses
+Security: Network Security Groups (NSG), IP Whitelisting, RSA SSH Keys
+Diagnostics: Azure Connection Troubleshooter
+-Security Implementations
+1. Perimeter Hardening via IP Whitelisting
+Standard cloud deployments often leave Port 22 open to the entire internet (0.0.0.0/0). In this lab, I configured a granular Inbound Security Rule within the NSG to:
+Restrict Source: Only allow traffic from my specific workstation's Public IP.
+Service: SSH (Port 22).
+Result: The VM remains invisible to global automated botnets.
+2. Identity & Access Management (IAM)
+Passwordless Authentication: Disabled traditional password logins in favor of 2048-bit RSA SSH Keys.
+Administrative Access: Verified access through the Azure Portal's diagnostic suite to ensure the firewall was correctly filtering traffic before attempting a connection.
+3. Resource & Capacity Management
+Regional Pivot: Encountered QuotaExceeded errors in the initial region; successfully re-deployed to an alternate region using a Standard_B1s instance to optimize cost and availability.
+📸 Technical Documentation
+The following milestones were captured during the deployment process:
+VNet Creation: Configuration of the virtual private cloud environment.
+NSG Configuration: Detail of the inbound security rule limiting access to a single IP.
+Connection Validation: Azure's "Check Access" tool confirming the path is open only for the authorized user.
+Successful SSH Login: Terminal screenshot showing the handshake and system banner.
+Resource Cleanup: Evidence of the Resource Group deletion to ensure cloud cost-efficiency.
